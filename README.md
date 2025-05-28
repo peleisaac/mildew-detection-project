@@ -133,6 +133,8 @@ with zipfile.ZipFile("inputs/cherry_leaves/cherry-leaves.zip", 'r') as zip_ref:
 * Visualized predictions for random test images
 * Predicted on 3 random test images with actual-vs-predicted label and confidence scores displayed, simulating dashboard behavior. This helped verify model reliability and interpretability.
 
+![Screenshot of Prediction](https://github.com/peleisaac/mildew-detection-project/blob/main/images/predict_on_random_test_data.png)
+
 ---
 
 ## 📸 Is a Montage Needed?
