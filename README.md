@@ -149,4 +149,34 @@ These are more practical and tailored to machine learning evaluation than a stat
 
 ---
 
+## 🌎 Dashboard Design Plan
+
+To fulfill business and user experience goals, the dashboard is structured with tabbed navigation using Streamlit. Here's the planned layout:
+
+### Tabs:
+
+#### 🔍 Predict
+
+* Upload a cherry leaf image
+* Display uploaded image preview
+* Predict class (healthy / powdery\_mildew)
+* Show confidence score visually
+
+#### 📊 Visual Difference
+
+* Display **average image for healthy leaves**
+* Display **average image for mildew leaves**
+* Display **absolute pixel difference image**
+* Optional: include sample comparisons and short textual cues on what the user is seeing
+
+#### ℹ️ About
+
+* App purpose and use case
+* Model accuracy and summary
+* Project contributors and credits
+
+This design aims to combine prediction capability with educational insights, providing transparency and enhancing trust in the model.
+
+---
+
 
