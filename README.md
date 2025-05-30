@@ -46,6 +46,13 @@ This includes building a complete ML pipeline and a dashboard that allows:
   * Average images per class and their absolute differences
 
 ![Class Sample Comparison](outputs/plots/healthy_vs_mildew.png)
+![Class Counts](outputs/plots/class_counts.png)
+![Image_Dimension Scatter](outputs/plots/image_dimension_scatter.png)
+![Health Sample](outputs/plots/healthy_samples_grid.png)
+![Powdery_Mildew Sample](outputs/plots/powdery_mildew_samples_grid.png)
+![Healthy Average](outputs/plots/avg_healthy.png)
+![Mildew Average](outputs/plots/avg_mildew.png)
+![Absolute Difference](outputs/plots/abs_diff.png)
 
 ### 3. Data Preparation
 
@@ -82,9 +89,6 @@ This includes building a complete ML pipeline and a dashboard that allows:
 ![Training Loss](outputs/plots/model_training_losses.png)
 ![Confusion Matrix](outputs/plots/confusion_matrix.png)
 ![ROC Curve](outputs/plots/roc_curve.png)
-![Healthy Average](outputs/plots/avg_healthy.png)
-![Mildew Average](outputs/plots/avg_mildew.png)
-![Absolute Difference](outputs/plots/abs_diff.png)
 ![Single Healthy Leaf](outputs/plots/healthy.png)
 ![Single Mildew Leaf](outputs/plots/mildew.png)
 
