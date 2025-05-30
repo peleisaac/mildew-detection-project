@@ -128,7 +128,8 @@ mildew-detection-project/
 │   ├── 03_DataCleaning.ipynb
 │   ├── 04_DataPreprocessing.ipynb
 │   ├── 05_Modeling.ipynb
-│   └── 06_ModelEvaluation.ipynb
+│   └── 06_ModelEvaluation.ipynb]
+│   └── kaggle.json/
 ├── inputs/                       # Raw and split data
 │   └── cherry-leaves/
 └── outputs/                      # Models, plots, and reports
