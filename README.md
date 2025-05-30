@@ -6,177 +6,215 @@ SmartLeaf is a machine learning-powered solution designed to automatically class
 
 ---
 
-## 🎯 Business Case & Objective
+## 🌟 Project Objective
 
-We are building an ML solution to address the following key business objective:
+> **Predict whether a given cherry leaf image is healthy or affected by powdery mildew.**
 
-> **"Predict whether a given cherry leaf image is healthy or affected by powdery mildew."**
+This includes building a complete ML pipeline and a dashboard that allows:
 
-### Client Needs
-
-* A **dashboard** that:
-
-  * Accepts user-uploaded cherry leaf images
-  * Provides real-time predictions
-  * Visualizes key image analysis insights
-  * Tracks analysis history and health distribution statistics
+* User-uploaded image classification
+* Visual explanations of what the model has learned
+* Clear performance metrics
+* A user-friendly experience tailored for agricultural stakeholders
 
 ---
 
-## 💡 Pre-Project Exploration & Understanding
+## 🔍 CRISP-DM Process Breakdown
 
-Before development began, the following questions were asked to understand the project's full context:
+### 1. Business Understanding
 
-### Q\&A Framework
+* Identified the need for automated mildew detection
+* Defined KPIs (target accuracy of ≥ 70%)
+* Chose a CNN model for binary image classification
+* Defined user stories to clarify functional requirements:
 
-1. **What is the business objective requiring an ML solution?**
+  * As a user, I want to upload a cherry leaf image so I can get a health diagnosis.
+  * As a user, I want to view visual differences between healthy and infected leaves.
+  * As a user, I want to see how confident the model is in its prediction.
+  * As a stakeholder, I want to evaluate the model’s performance.
 
-   * To predict whether a given cherry leaf is healthy or has powdery mildew.
+### 2. Data Understanding
 
-2. **Is data available for model training?**
+* Dataset from Kaggle: [codeinstitute/cherry-leaves](https://www.kaggle.com/codeinstitute/cherry-leaves)
+* Two classes: `healthy` and `powdery_mildew`
+* All images are RGB and roughly 256x256 pixels
+* Visualized:
 
-   * Yes. A labeled image dataset with healthy and powdery mildew-affected leaves.
+  * Class distribution
+  * Image dimensions
+  * Sample images
+  * Average images per class and their absolute differences
 
-3. **What type of solution is needed?**
+![Class Sample Comparison](outputs/plots/healthy_vs_mildew.png)
 
-   * A **Streamlit dashboard** (not an API) to make predictions and show visual analytics.
+### 3. Data Preparation
 
-4. **What does success look like?**
+* Validated and removed corrupted images
+* Split dataset into train/validation/test (70/20/10)
+* Augmented training images (rotation, shift, zoom, flip)
+* Saved all outputs in structured folders for reproducibility
 
-   * A user-friendly dashboard that meets the following:
+### 4. Modeling
 
-     * Accepts user-uploaded images
-     * Displays visual differentiations between classes
-     * Returns confident predictions with metadata
-     * Maintains a visual analysis history
+* Built a CNN with:
 
-5. **What are the Epics and User Stories?**
+  * 3 Convolutional layers
+  * GlobalAveragePooling
+  * Dense and Dropout layers
+* Compiled with Adam optimizer and binary crossentropy
+* Applied EarlyStopping and ModelCheckpoint
+* Achieved over **99% accuracy**
+* Saved model as `mildew_model.h5`
 
-   * **Epic 1: Data Collection & Understanding**
+### 5. Evaluation
 
-     * Story: Gather cherry leaf images
-     * Story: Validate data integrity
-   * **Epic 2: Data Preprocessing & Visualization**
+* Loaded model and training history
+* Visualized training/validation accuracy and loss
+* Plotted confusion matrix and classification report
+* Computed precision, recall, F1-score, AUC
+* Visualized:
 
-     * Story: Clean corrupted images
-     * Story: Visualize class distribution and image features
-   * **Epic 3: Model Development & Evaluation**
+  * ROC Curve
+  * Predicted vs actual class on random samples
+  * Model complexity (parameter summary)
 
-     * Story: Train CNN for binary classification
-     * Story: Plot learning curves and test accuracy
-   * **Epic 4: Dashboard Design & Deployment**
+![Training Accuracy](outputs/plots/model_training_accuracy.png)
+![Training Loss](outputs/plots/model_training_losses.png)
+![Confusion Matrix](outputs/plots/confusion_matrix.png)
+![ROC Curve](outputs/plots/roc_curve.png)
+![Healthy Average](outputs/plots/avg_healthy.png)
+![Mildew Average](outputs/plots/avg_mildew.png)
+![Absolute Difference](outputs/plots/abs_diff.png)
+![Single Healthy Leaf](outputs/plots/healthy.png)
+![Single Mildew Leaf](outputs/plots/mildew.png)
 
-     * Story: Develop user interface with Streamlit
-     * Story: Deploy with persistent image history
+![Screenshot of Prediction](https://github.com/peleisaac/mildew-detection-project/blob/main/images/predict_on_random_test_data.png)
 
-6. **Are there ethical or privacy concerns?**
+### 6. Deployment
 
-   * Minimal. As long as uploaded leaf images do not include identifying data.
-
-7. **What level of model performance is needed?**
-
-   * At least **70% accuracy** to be considered useful. Final model exceeds 99%.
-
-8. **What are the inputs and outputs?**
-
-   * **Input**: Cherry leaf image (unlabeled)
-   * **Output**: Health status (healthy / mildew) and confidence score
-
-9. **Does the data suggest a specific model?**
-
-   * Yes. Image data + binary classification = Convolutional Neural Network (CNN)
-
-10. **How does this benefit the client?**
-
-    * Faster, more scalable mildew detection
-    * Reduction in manual diagnosis
-    * Supports proactive plant care
+* Developed Streamlit dashboard with modular pages
+* Tabs: Predict | Visual Study | Model Performance | Business Impact | About
+* Supports image upload, live prediction, class visualization, and performance summary
+* Dashboard designed with user feedback and interpretability in mind
 
 ---
 
 ## 📂 Project Structure
 
-The project is divided into three main notebooks:
-
-### 1. 📚 Data Collection
-
-* Downloaded the dataset from Kaggle using the Kaggle API and JSON credentials
-* Extracted the zip file using Python's `zipfile` module
-
-```python
-with zipfile.ZipFile("inputs/cherry_leaves/cherry-leaves.zip", 'r') as zip_ref:
-    zip_ref.extractall("inputs/cherry_leaves/")
+```
+mildew-detection-project/
+├── app.py                        # Main Streamlit app
+├── requirements.txt              # Dependencies
+├── Procfile                      # Heroku deployment
+├── runtime.txt                   # Python version
+├── setup.sh                      # Heroku setup script
+├── README.md                     # Project documentation
+├── app_pages/                    # Streamlit modular pages
+│   ├── page_summary.py
+│   ├── page_visual_study.py
+│   ├── page_ml_performance.py
+│   ├── page_business_impact.py
+│   └── page_hypothesis.py
+├── src/                          # Supporting modules
+│   ├── data_management.py
+│   ├── utils.py
+│   └── machine_learning/
+│       ├── evaluate_clf.py
+├── jupyter_notebooks/            # Analysis notebooks
+│   ├── 01_DataCollection.ipynb
+│   ├── 02_DataVisualization.ipynb
+│   ├── 03_DataCleaning.ipynb
+│   ├── 04_DataPreprocessing.ipynb
+│   ├── 05_Modeling.ipynb
+│   └── 06_ModelEvaluation.ipynb
+├── inputs/                       # Raw and split data
+│   └── cherry-leaves/
+└── outputs/                      # Models, plots, and reports
+    ├── mildew_model.h5
+    ├── training_history.pkl
+    ├── history.json
+    ├── class_indices.json
+    ├── performance_summary.json
+    ├── model_summary.json
+    ├── plots/
+    │   ├── confusion_matrix.png
+    │   ├── confusion_matrix.json
+    │   ├── model_training_accuracy.png
+    │   ├── model_training_losses.png
+    │   ├── avg_healthy.png
+    │   ├── avg_mildew.png
+    │   ├── abs_diff.png
+    │   ├── healthy.png
+    │   ├── mildew.png
+    │   ├── healthy_vs_mildew.png
+    │   └── roc_curve.png/json
 ```
 
-* Verified image validity using PIL to detect corrupt or unreadable files
-* Split the dataset into `train`, `validation`, and `test` subsets using a 70/20/10 ratio
-* Used `organize_dataset_into_subsets()` and saved results into `inputs/split-leaves` to preserve the original dataset
-
-### 2. 🌐 Data Visualization
-
-* Defined base dataset path and structure using `Path`
-* Counted images per class and subset
-* Displayed sample image grids for both `healthy` and `powdery_mildew` classes
-* Analyzed image dimensions (found consistent size: **256x256**)
-* Plotted image shape scatterplot and histograms
-* Computed and displayed average image per class
-* Visualized the **absolute pixel difference** between healthy and mildew images
-
-### 3. 🧑‍💻 Data Evaluation
-
-* Built a CNN model with three convolutional layers, followed by a dense layer
-* Used `ImageDataGenerator` for image augmentation (rotation, flipping, zooming)
-* Trained model with early stopping and model checkpointing
-* Achieved over **99% accuracy** on training and validation sets
-* Plotted model learning curves (accuracy & loss) and saved them to the `outputs/` folder
-* Evaluated the model using a confusion matrix and classification report
-* Visualized predictions for random test images
-* Predicted on 3 random test images with actual-vs-predicted label and confidence scores displayed, simulating dashboard behavior. This helped verify model reliability and interpretability.
-
-![Screenshot of Prediction](https://github.com/peleisaac/mildew-detection-project/blob/main/images/predict_on_random_test_data.png)
-
 ---
 
-## 📸 Is a Montage Needed?
+## 🔍 Dashboard Features
 
-While a traditional "montage" isn't necessary, we used **image grids and comparative visualizations** to:
-
-* Display representative images from each class
-* Visually explain what the model is learning
-* Compare average image patterns
-
-These are more practical and tailored to machine learning evaluation than a static montage.
-
----
-
-## 🌎 Dashboard Design Plan
-
-To fulfill business and user experience goals, the dashboard is structured with tabbed navigation using Streamlit. Here's the planned layout:
-
-### Tabs:
-
-#### 🔍 Predict
+### 🔍 Predict
 
 * Upload a cherry leaf image
-* Display uploaded image preview
-* Predict class (healthy / powdery\_mildew)
-* Show confidence score visually
+* View live prediction with confidence
 
-#### 📊 Visual Difference
+### 📊 Visual Study
 
-* Display **average image for healthy leaves**
-* Display **average image for mildew leaves**
-* Display **absolute pixel difference image**
-* Optional: include sample comparisons and short textual cues on what the user is seeing
+* Average images for each class
+* Absolute difference between healthy and mildew
+* Sample grid view of each class
 
-#### ℹ️ About
+### 📊 Model Performance
 
-* App purpose and use case
-* Model accuracy and summary
-* Project contributors and credits
+* Confusion matrix
+* Classification report
+* ROC Curve with AUC
+* Parameter summary
+* Live prediction samples with confidence levels
 
-This design aims to combine prediction capability with educational insights, providing transparency and enhancing trust in the model.
+### ℹ️ About
+
+* Business use case
+* Model background
+* Contributors
 
 ---
 
+## 👤 Contributors
 
+* **Project Lead & Developer:** \[Your Name]
+* **Guided by:** Code Institute Portfolio Project 5 Guidelines
+* **Dataset Source:** [Kaggle - codeinstitute/cherry-leaves](https://www.kaggle.com/codeinstitute/cherry-leaves)
+
+---
+
+## 🚀 Deployment
+
+To run locally:
+
+```bash
+pip install -r requirements.txt
+streamlit run app.py
+```
+
+To deploy on Heroku:
+
+* Ensure `Procfile`, `setup.sh`, `runtime.txt` are in place
+* Use Heroku CLI or GitHub CI/CD
+
+---
+
+## 🎓 License & Usage
+
+This project is for educational and demonstration purposes only. Please reference the dataset source if used in other applications.
+
+---
+
+## 📅 Last Updated
+
+**May 2025**
+
+---
+
+For feedback or collaboration, please open an issue or contact the repository owner.
