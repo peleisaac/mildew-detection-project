@@ -89,8 +89,6 @@ This includes building a complete ML pipeline and a dashboard that allows:
 ![Confusion Matrix](outputs/plots/confusion_matrix.png)
 ![ROC Curve](outputs/plots/roc_curve.png)
 ![Class Sample Comparison](outputs/plots/healthy_vs_mildew.png)
-![Single Healthy Leaf](outputs/plots/healthy.png)
-![Single Mildew Leaf](outputs/plots/mildew.png)
 
 ![Screenshot of Prediction](https://github.com/peleisaac/mildew-detection-project/blob/main/images/predict_on_random_test_data.png)
 
