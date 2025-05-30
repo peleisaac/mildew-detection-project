@@ -185,7 +185,7 @@ mildew-detection-project/
 
 ## 👤 Contributors
 
-* **Project Lead & Developer:** \[Your Name]
+* **Project Lead & Developer:** \Isaac Aboagye
 * **Guided by:** Code Institute Portfolio Project 5 Guidelines
 * **Dataset Source:** [Kaggle - codeinstitute/cherry-leaves](https://www.kaggle.com/codeinstitute/cherry-leaves)
 
