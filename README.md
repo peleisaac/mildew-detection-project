@@ -112,6 +112,7 @@ mildew-detection-project/
 ├── setup.sh                      # Heroku setup script
 ├── README.md                     # Project documentation
 ├── app_pages/                    # Streamlit modular pages
+│   ├── multipage.py
 │   ├── page_summary.py
 │   ├── page_visual_study.py
 │   ├── page_ml_performance.py
