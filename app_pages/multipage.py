@@ -10,20 +10,23 @@ class MultiPage:
             page_title=self.app_name,
             page_icon="🌿",
             layout="wide",
-            initial_sidebar_state="expanded"
+            initial_sidebar_state="expanded",
         )
 
     def add_page(self, title, func):
-        self.pages.append({
-            "title": title,
-            "function": func
-        })
+        self.pages.append({"title": title, "function": func})
 
     def run(self):
         st.sidebar.title("Navigation")
-        page = st.sidebar.radio(
-            "Select a page:", 
-            self.pages, 
-            format_func=lambda p: p["title"]
-        )
-        page["function"]()
+
+        # Extract just the titles for the radio options
+        page_titles = [page["title"] for page in self.pages]
+
+        # Get the selected page title
+        selected_title = st.sidebar.radio("Select a page:", page_titles)
+
+        # Find and execute the corresponding function
+        for page in self.pages:
+            if page["title"] == selected_title:
+                page["function"]()
+                break
