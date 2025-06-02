@@ -12,10 +12,10 @@ SmartLeaf is a machine learning-powered solution designed to automatically class
 
 This includes building a complete ML pipeline and a dashboard that allows:
 
-* User-uploaded image classification
-* Visual explanations of what the model has learned
-* Clear performance metrics
-* A user-friendly experience tailored for agricultural stakeholders
+- User-uploaded image classification
+- Visual explanations of what the model has learned
+- Clear performance metrics
+- A user-friendly experience tailored for agricultural stakeholders
 
 ---
 
@@ -23,27 +23,27 @@ This includes building a complete ML pipeline and a dashboard that allows:
 
 ### 1. Business Understanding
 
-* Identified the need for automated mildew detection
-* Defined KPIs (target accuracy of ≥ 70%)
-* Chose a CNN model for binary image classification
-* Defined user stories to clarify functional requirements:
+- Identified the need for automated mildew detection
+- Defined KPIs (target accuracy of ≥ 70%)
+- Chose a CNN model for binary image classification
+- Defined user stories to clarify functional requirements:
 
-  * As a user, I want to upload a cherry leaf image so I can get a health diagnosis.
-  * As a user, I want to view visual differences between healthy and infected leaves.
-  * As a user, I want to see how confident the model is in its prediction.
-  * As a stakeholder, I want to evaluate the model’s performance.
+  - As a user, I want to upload a cherry leaf image so I can get a health diagnosis.
+  - As a user, I want to view visual differences between healthy and infected leaves.
+  - As a user, I want to see how confident the model is in its prediction.
+  - As a stakeholder, I want to evaluate the model’s performance.
 
 ### 2. Data Understanding
 
-* Dataset from Kaggle: [codeinstitute/cherry-leaves](https://www.kaggle.com/codeinstitute/cherry-leaves)
-* Two classes: `healthy` and `powdery_mildew`
-* All images are RGB and roughly 256x256 pixels
-* Visualized:
+- Dataset from Kaggle: [codeinstitute/cherry-leaves]
+- Two classes: `healthy` and `powdery_mildew`
+- All images are RGB and roughly 256x256 pixels
+- Visualized:
 
-  * Class distribution
-  * Image dimensions
-  * Sample images
-  * Average images per class and their absolute differences
+  - Class distribution
+  - Image dimensions
+  - Sample images
+  - Average images per class and their absolute differences
 
 ![Class Counts](outputs/plots/class_counts.png)
 ![Image_Dimension Scatter](outputs/plots/image_dimension_scatter.png)
@@ -55,34 +55,35 @@ This includes building a complete ML pipeline and a dashboard that allows:
 
 ### 3. Data Preparation
 
-* Validated and removed corrupted images
-* Split dataset into train/validation/test (70/20/10)
-* Augmented training images (rotation, shift, zoom, flip)
-* Saved all outputs in structured folders for reproducibility
+- Validated and removed corrupted images
+- Split dataset into train/validation/test (70/20/10)
+- Augmented training images (rotation, shift, zoom, flip)
+- Saved all outputs in structured folders for reproducibility
 
 ### 4. Modeling
 
-* Built a CNN with:
+- Built a CNN with:
 
-  * 3 Convolutional layers
-  * GlobalAveragePooling
-  * Dense and Dropout layers
-* Compiled with Adam optimizer and binary crossentropy
-* Applied EarlyStopping and ModelCheckpoint
-* Achieved over **99% accuracy**
-* Saved model as `mildew_model.h5`
+  - 3 Convolutional layers
+  - GlobalAveragePooling
+  - Dense and Dropout layers
+
+- Compiled with Adam optimizer and binary crossentropy
+- Applied EarlyStopping and ModelCheckpoint
+- Achieved over **99% accuracy**
+- Saved model as `mildew_model.h5`
 
 ### 5. Evaluation
 
-* Loaded model and training history
-* Visualized training/validation accuracy and loss
-* Plotted confusion matrix and classification report
-* Computed precision, recall, F1-score, AUC
-* Visualized:
+- Loaded model and training history
+- Visualized training/validation accuracy and loss
+- Plotted confusion matrix and classification report
+- Computed precision, recall, F1-score, AUC
+- Visualized:
 
-  * ROC Curve
-  * Predicted vs actual class on random samples
-  * Model complexity (parameter summary)
+  - ROC Curve
+  - Predicted vs actual class on random samples
+  - Model complexity (parameter summary)
 
 ![Training Accuracy](outputs/plots/model_training_accuracy.png)
 ![Training Loss](outputs/plots/model_training_losses.png)
@@ -94,10 +95,10 @@ This includes building a complete ML pipeline and a dashboard that allows:
 
 ### 6. Deployment
 
-* Developed Streamlit dashboard with modular pages
-* Tabs: Predict | Visual Study | Model Performance | Business Impact | About
-* Supports image upload, live prediction, class visualization, and performance summary
-* Dashboard designed with user feedback and interpretability in mind
+- Developed Streamlit dashboard with modular pages
+- Tabs: Predict | Visual Study | Model Performance | Business Impact | About
+- Supports image upload, live prediction, class visualization, and performance summary
+- Dashboard designed with user feedback and interpretability in mind
 
 ---
 
@@ -111,47 +112,56 @@ mildew-detection-project/
 ├── runtime.txt                   # Python version
 ├── setup.sh                      # Heroku setup script
 ├── README.md                     # Project documentation
+├── images/                    # Images Folder
 ├── app_pages/                    # Streamlit modular pages
 │   ├── multipage.py
+│   ├── page_batch_analysis.py
+│   ├── page_ml_performance.py
 │   ├── page_summary.py
 │   ├── page_visual_study.py
-│   ├── page_ml_performance.py
-│   ├── page_business_impact.py
-│   └── page_hypothesis.py
+│   └── page_predict.py
 ├── src/                          # Supporting modules
 │   ├── data_management.py
 │   ├── utils.py
 │   └── machine_learning/
 │       ├── evaluate_clf.py
+│       └── predictive_analysis
 ├── jupyter_notebooks/            # Analysis notebooks
 │   ├── 01_DataCollection.ipynb
 │   ├── 02_DataVisualization.ipynb
 │   ├── 03_DataCleaning.ipynb
 │   ├── 04_DataPreprocessing.ipynb
 │   ├── 05_Modeling.ipynb
-│   └── 06_ModelEvaluation.ipynb]
-│   └── kaggle.json/
+│   └── 06_ModelEvaluation.ipynb
 ├── inputs/                       # Raw and split data
 │   └── cherry-leaves/
 └── outputs/                      # Models, plots, and reports
-    ├── mildew_model.h5
-    ├── training_history.pkl
-    ├── history.json
     ├── class_indices.json
-    ├── performance_summary.json
+    ├── classification_report.json
+    ├── confusion_matrix.json
+    ├── evaluation.pkl
+    ├── history.json
+    ├── mildew_model.h5
     ├── model_summary.json
+    ├── performance_summary.json
+    ├── roc_data.json
+    ├── training_history.pkl
     ├── plots/
-    │   ├── confusion_matrix.png
-    │   ├── confusion_matrix.json
-    │   ├── model_training_accuracy.png
-    │   ├── model_training_losses.png
+    │   ├── abs_diff.png
     │   ├── avg_healthy.png
     │   ├── avg_mildew.png
-    │   ├── abs_diff.png
-    │   ├── healthy.png
-    │   ├── mildew.png
+    │   ├── class_counts.png
+    │   ├── confusion_matrix.png
+    │   ├── healthy_samples_grid.png
     │   ├── healthy_vs_mildew.png
-    │   └── roc_curve.png/json
+    │   ├── healthy.png
+    │   ├── image_dimension_scatter.png
+    │   ├── mildew.png
+    │   ├── model_training_accuracy.png
+    │   ├── model_training_losses.png
+    │   ├── powdery_mildew_samples_grid.png
+    │   ├── sample_predictions.png
+    │   └── roc_curve.png/
 ```
 
 ---
@@ -160,36 +170,36 @@ mildew-detection-project/
 
 ### 🔍 Predict
 
-* Upload a cherry leaf image
-* View live prediction with confidence
+- Upload a cherry leaf image
+- View live prediction with confidence
 
 ### 📊 Visual Study
 
-* Average images for each class
-* Absolute difference between healthy and mildew
-* Sample grid view of each class
+- Average images for each class
+- Absolute difference between healthy and mildew
+- Sample grid view of each class
 
 ### 📊 Model Performance
 
-* Confusion matrix
-* Classification report
-* ROC Curve with AUC
-* Parameter summary
-* Live prediction samples with confidence levels
+- Confusion matrix
+- Classification report
+- ROC Curve with AUC
+- Parameter summary
+- Live prediction samples with confidence levels
 
 ### ℹ️ About
 
-* Business use case
-* Model background
-* Contributors
+- Business use case
+- Model background
+- Contributors
 
 ---
 
 ## 👤 Contributors
 
-* **Project Lead & Developer:** \Isaac Aboagye
-* **Guided by:** Code Institute Portfolio Project 5 Guidelines
-* **Dataset Source:** [Kaggle - codeinstitute/cherry-leaves](https://www.kaggle.com/codeinstitute/cherry-leaves)
+- **Project Lead & Developer:** \Isaac Aboagye
+- **Guided by:** Code Institute Portfolio Project 5 Guidelines
+- **Dataset Source:** Kaggle - codeinstitute/cherry-leaves
 
 ---
 
@@ -204,8 +214,8 @@ streamlit run app.py
 
 To deploy on Heroku:
 
-* Ensure `Procfile`, `setup.sh`, `runtime.txt` are in place
-* Use Heroku CLI or GitHub CI/CD
+- Ensure `Procfile`, `setup.sh`, `runtime.txt` are in place
+- Use Heroku CLI or GitHub CI/CD
 
 ---
 
