@@ -50,7 +50,7 @@ def page_mildew_detector():
 
         with col1:
             st.markdown("#### 🖼️ Uploaded Image")
-            img = Image.open(uploaded_file).convert("RBG")
+            img = Image.open(uploaded_file).convert("RGB")
             st.image(img, caption="Uploaded Cherry Leaf", use_container_width=True)
 
             # Image information
