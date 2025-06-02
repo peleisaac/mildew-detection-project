@@ -184,10 +184,10 @@ def page_summary():
     **Target Variable**: Binary classification (0=healthy, 1=powdery_mildew)
 
     **Success Metrics**: 
-    - Accuracy ≥ 97%
-    - Precision ≥ 95% 
-    - Recall ≥ 95%
-    - F1-Score ≥ 95%
+    - Accuracy ≥ 99.8%
+    - Precision ≥ 100% 
+    - Recall ≥ 99.7%
+    - F1-Score ≥ 99.9%
 
     **Model Output**: Classification probability and confidence score for each prediction
 
