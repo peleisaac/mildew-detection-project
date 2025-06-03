@@ -172,7 +172,7 @@ def page_batch_analysis():
                     title="Prediction Distribution",
                     color_discrete_map={"Healthy": "green", "Infected": "red"},
                 )
-                st.plotly_chart(fig_pie, use_container_width=True)
+                st.plotly_chart(fig_pie)
                 st.markdown("""
 **📊 Distribution Chart Analysis:**
 This pie chart visualizes the proportion of healthy vs infected leaves in your batch. 
@@ -196,7 +196,7 @@ more widespread infection requiring immediate attention.
                     line_dash="dash",
                     annotation_text=f"Threshold: {confidence_threshold*100}%",
                 )
-                st.plotly_chart(fig_hist, use_container_width=True)
+                st.plotly_chart(fig_hist)
                 st.markdown("""
 **📊 Confidence Histogram Analysis:**
 This histogram shows the distribution of prediction confidence scores across all images. 
@@ -215,7 +215,7 @@ require manual verification. Color coding helps identify confidence levels by pr
                     title="Processing Timeline",
                     color_discrete_map={"Healthy": "green", "Infected": "red"},
                 )
-                st.plotly_chart(fig_timeline, use_container_width=True)
+                st.plotly_chart(fig_timeline)
                 st.markdown("""
 **📊 Timeline Scatter Plot Analysis:**
 This scatter plot tracks prediction confidence over processing time, helping identify 
@@ -252,7 +252,7 @@ levels across time indicate stable model performance.
             ]
 
             # Display filtered table
-            st.dataframe(filtered_df, use_container_width=True, hide_index=True)
+            st.dataframe(filtered_df, hide_index=True)
             st.markdown("""
 **📋 Results Table Interpretation:**
 This comprehensive table provides detailed analysis results for each processed image. 
@@ -406,7 +406,7 @@ RECOMMENDATIONS:
         }
         sample_df = pd.DataFrame(sample_data)
 
-        st.dataframe(sample_df, use_container_width=True, hide_index=True)
+        st.dataframe(sample_df, hide_index=True)
 
         # Tips section
         st.markdown("---")
