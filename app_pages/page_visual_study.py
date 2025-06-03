@@ -192,7 +192,6 @@ def page_visual_study_body():
                 healthy_grid = Image.open(healthy_grid_path)
                 st.image(
                     healthy_grid,
-                    use_container_width=True,
                     caption="Montage of healthy cherry leaf samples showing consistent green coloration and clear structure",
                 )
                 st.success(
