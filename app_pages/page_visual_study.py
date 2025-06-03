@@ -58,7 +58,7 @@ def page_visual_study_body():
             avg_healthy_path = "outputs/plots/avg_healthy.png"
             if os.path.exists(avg_healthy_path):
                 avg_healthy = Image.open(avg_healthy_path)
-                st.image(avg_healthy, use_container_width=True)
+                st.image(avg_healthy)
                 st.success(
                     """
                 **Key Observations:**
@@ -81,7 +81,7 @@ def page_visual_study_body():
             avg_mildew_path = "outputs/plots/avg_mildew.png"
             if os.path.exists(avg_mildew_path):
                 avg_mildew = Image.open(avg_mildew_path)
-                st.image(avg_mildew, use_container_width=True)
+                st.image(avg_mildew)
                 st.error(
                     """
                 **Key Observations:**
@@ -104,7 +104,7 @@ def page_visual_study_body():
             diff_path = "outputs/plots/abs_diff.png"
             if os.path.exists(diff_path):
                 diff_image = Image.open(diff_path)
-                st.image(diff_image, use_container_width=True)
+                st.image(diff_image)
                 st.info(
                     """
                 **Interpretation:**
@@ -133,7 +133,7 @@ def page_visual_study_body():
             healthy_sample_path = "outputs/plots/healthy.png"
             if os.path.exists(healthy_sample_path):
                 healthy_sample = Image.open(healthy_sample_path)
-                st.image(healthy_sample, use_container_width=True)
+                st.image(healthy_sample)
                 st.markdown(
                     """
                 **Healthy Leaf Characteristics:**
@@ -155,7 +155,7 @@ def page_visual_study_body():
             mildew_sample_path = "outputs/plots/mildew.png"
             if os.path.exists(mildew_sample_path):
                 mildew_sample = Image.open(mildew_sample_path)
-                st.image(mildew_sample, use_container_width=True)
+                st.image(mildew_sample)
                 st.markdown(
                     """
                 **Mildew Infection Indicators:**
@@ -218,7 +218,6 @@ def page_visual_study_body():
                 mildew_grid = Image.open(mildew_grid_path)
                 st.image(
                     mildew_grid,
-                    use_container_width=True,
                     caption="Montage of mildew-infected cherry leaf samples showing characteristic white powdery patches",
                 )
                 st.error(
@@ -265,7 +264,7 @@ def page_visual_study_body():
                         "Powdery Mildew": "#DC143C",
                     },
                 )
-                st.plotly_chart(fig_pie, use_container_width=True)
+                st.plotly_chart(fig_pie)
 
             with col2:
                 # Display key metrics
@@ -305,7 +304,6 @@ def page_visual_study_body():
             comparison_image = Image.open(comparison_path)
             st.image(
                 comparison_image,
-                use_container_width=True,
                 caption="Direct comparison highlighting key visual differences between healthy and mildew-infected leaves",
             )
         else:
