@@ -16,8 +16,8 @@ from datetime import datetime
 
 # base_dir = Path(__file__).resolve().parent.parent
 
-image_path = "/outputs/plots/healthy_samples_grid.png"
-powdery_path = "/outputs/plots/powdery_mildew_samples_grid.png"
+image_path = "outputs/plots/healthy_samples_grid.png"
+powdery_path = "outputs/plots/powdery_mildew_samples_grid.png"
 healthy_sample = Image.open(image_path)
 mildew_sample = Image.open(powdery_path)
 
