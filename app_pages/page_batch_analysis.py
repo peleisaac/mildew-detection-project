@@ -252,7 +252,7 @@ levels across time indicate stable model performance.
             ]
 
             # Display filtered table
-            st.dataframe(filtered_df, hide_index=True)
+            st.dataframe(filtered_df)
             st.markdown("""
 **📋 Results Table Interpretation:**
 This comprehensive table provides detailed analysis results for each processed image. 
