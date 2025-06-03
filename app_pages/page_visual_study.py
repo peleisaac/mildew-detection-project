@@ -290,6 +290,12 @@ def page_visual_study_body():
     except Exception as e:
         st.warning(f"Could not load dataset statistics: {str(e)}")
 
+
+    # Scatter plot of image dimension
+    st.markdown("#### 📏 Scatterplot of Image Dimensions")
+    st.image("outputs/plots/image_dimension_scatter.png", )
+
+    
     # Side-by-side Comparison Section
     st.write("---")
     st.write("## ⚖️ Direct Visual Comparison")
