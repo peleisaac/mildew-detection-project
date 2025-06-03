@@ -406,7 +406,7 @@ RECOMMENDATIONS:
         }
         sample_df = pd.DataFrame(sample_data)
 
-        st.dataframe(sample_df, hide_index=True)
+        st.dataframe(sample_df)
 
         # Tips section
         st.markdown("---")
