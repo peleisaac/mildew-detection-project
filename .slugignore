@@ -1,3 +1,11 @@
+.ipynb_checkpoints/
+__pycache__/
+*.py[cod]
+*.test
+*.log
+*.tmp
+*.json
+inputs/
 outputs/
 !outputs/plots/
 !outputs/class_indices.json
