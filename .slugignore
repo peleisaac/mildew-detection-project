@@ -47,3 +47,6 @@ __pycache__/
 
 # Ignore OS junk
 Thumbs.db
+
+#Ignore outputs folder
+/outputs
