@@ -18,8 +18,8 @@ from datetime import datetime
 from pathlib import Path
 
 base_dir = Path(__file__).resolve().parent.parent
-image_path = base_dir / "outputs/plots/healthy_samples_grid.png"
-powdery_path = base_dir / "outputs/plots/powdery_mildew_samples_grid.png"
+image_path = base_dir / "/outputs/plots/healthy_samples_grid.png"
+powdery_path = base_dir / "/outputs/plots/powdery_mildew_samples_grid.png"
 healthy_sample = Image.open(image_path)
 mildew_sample = Image.open(powdery_path)
 
