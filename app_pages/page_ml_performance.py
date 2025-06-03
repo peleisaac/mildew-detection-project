@@ -153,7 +153,7 @@ def display_training_curves():
             accuracy_plot_path = "outputs/plots/model_training_accuracy.png"
             if os.path.exists(accuracy_plot_path):
                 accuracy_img = Image.open(accuracy_plot_path)
-                st.image(accuracy_img, use_container_width=True)
+                st.image(accuracy_img)
                 st.success(
                     """
                 **Accuracy Analysis:**
@@ -171,7 +171,7 @@ def display_training_curves():
             loss_plot_path = "outputs/plots/model_training_losses.png"
             if os.path.exists(loss_plot_path):
                 loss_img = Image.open(loss_plot_path)
-                st.image(loss_img, use_container_width=True)
+                st.image(loss_img)
                 st.info(
                     """
                 **Loss Analysis:**
@@ -269,7 +269,7 @@ def display_confusion_matrix():
         cm_plot_path = "outputs/plots/confusion_matrix.png"
         if os.path.exists(cm_plot_path):
             cm_img = Image.open(cm_plot_path)
-            st.image(cm_img, use_container_width=True)
+            st.image(cm_img)
         else:
             # Generate confusion matrix if data is available
             cm_data = evaluation_data.get("confusion_matrix")
@@ -366,7 +366,7 @@ def display_classification_report():
                 vmax=1,
             )
 
-            st.dataframe(styled_df, use_container_width=True)
+            st.dataframe(styled_df)
 
             # Insights
             if "healthy" in display_data and "powdery_mildew" in display_data:
@@ -402,7 +402,7 @@ def display_roc_curve():
         roc_plot_path = "outputs/plots/roc_curve.png"
         if os.path.exists(roc_plot_path):
             roc_img = Image.open(roc_plot_path)
-            st.image(roc_img, use_container_width=True)
+            st.image(roc_img)
         else:
             # Generate ROC curve if data is available
             evaluation_data = load_evaluation_data()
@@ -445,7 +445,7 @@ def display_roc_curve():
                         height=500,
                     )
 
-                    st.plotly_chart(fig, use_container_width=True)
+                    st.plotly_chart(fig)
 
                     # AUC interpretation
                     col1, col2 = st.columns(2)
@@ -487,7 +487,6 @@ def display_sample_predictions():
             predictions_img = Image.open(predictions_plot_path)
             st.image(
                 predictions_img,
-                use_container_width=True,
                 caption="Sample predictions showing model confidence and accuracy on test data",
             )
             st.info(
