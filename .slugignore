@@ -1,9 +1,49 @@
-outputs/
-.ipynb_checkpoints/
-__pycache__/
-*.py[cod]
-*.test
-*.log
-*.tmp
-*.json
+# Ignore data files
+*.csv
+*.tsv
+*.data
+*.dat
+*.h5
+*.hdf5
+*.parquet
+*.pickle
+*.pkl
+*.joblib
 
+# Ignore notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore notebook outputs (if saved separately)
+*.out
+
+# Ignore test and dev files
+tests/
+examples/
+notebooks/
+docs/
+*.md
+*.rst
+*.log
+
+# Ignore environment and config files
+.env
+*.env
+*.yml
+*.yaml
+*.toml
+*.ini
+*.cfg
+
+# Ignore compiled Python files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore IDE and editor settings
+.vscode/
+.idea/
+.DS_Store
+
+# Ignore OS junk
+Thumbs.db
