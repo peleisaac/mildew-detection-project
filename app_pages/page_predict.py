@@ -2,8 +2,6 @@ import streamlit as st
 import numpy as np
 from PIL import Image
 
-# import matplotlib.pyplot as plt
-from PIL import Image
 from pathlib import Path
 
 # from src.data_management import load_pkl_file
@@ -15,11 +13,11 @@ from src.machine_learning.predictive_analysis import (
 import plotly.graph_objects as go
 from datetime import datetime
 
-from pathlib import Path
 
-base_dir = Path(__file__).resolve().parent.parent
-image_path = base_dir / "../outputs/plots/healthy_samples_grid.png"
-powdery_path = base_dir / "../outputs/plots/powdery_mildew_samples_grid.png"
+# base_dir = Path(__file__).resolve().parent.parent
+
+image_path = "outputs/plots/healthy_samples_grid.png"
+powdery_path = "outputs/plots/powdery_mildew_samples_grid.png"
 healthy_sample = Image.open(image_path)
 mildew_sample = Image.open(powdery_path)
 
