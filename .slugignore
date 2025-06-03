@@ -1,0 +1,9 @@
+outputs/
+!outputs/plots/
+!outputs/class_indices.json
+!outputs/performance_summary.json
+!outputs/history.json
+!outputs/classification_report.json
+!outputs/confusion_matrix.json
+!outputs/model_summary.json
+!outputs/roc_data.json
