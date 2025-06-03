@@ -49,7 +49,7 @@ def page_mildew_detector():
         with col1:
             st.markdown("#### 🖼️ Uploaded Image")
             img = Image.open(uploaded_file).convert("RGB")
-            st.image(img, caption="Uploaded Cherry Leaf", use_container_width=True)
+            st.image(img, caption="Uploaded Cherry Leaf")
 
             # Image information
             st.markdown("**Image Details:**")
@@ -290,11 +290,10 @@ def page_mildew_detector():
         col1, col2 = st.columns(2)
         with col1:
             st.image(
-                healthy_sample, caption="Healthy Leaf Sample", use_container_width=True
+                healthy_sample, caption="Healthy Leaf Sample"
             )
         with col2:
             st.image(
                 mildew_sample,
-                caption="Powdery Mildew Leaf Sample",
-                use_container_width=True,
+                caption="Powdery Mildew Leaf Sample"            
             )
