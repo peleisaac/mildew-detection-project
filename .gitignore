@@ -1,17 +1,53 @@
-.ipynb_checkpoints/
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
-*.test
+*$py.class
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Environment and dependency files
+.env
+.venv/
+env/
+venv/
+ENV/
+Pipfile.lock
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Notebook output files (if separate)
+*.out
+
+# Logs
 *.log
-*.tmp
-*.json
-inputs/
-outputs/
-!outputs/plots/
-!outputs/class_indices.json
-!outputs/performance_summary.json
-!outputs/history.json
-!outputs/classification_report.json
-!outputs/confusion_matrix.json
-!outputs/model_summary.json
-!outputs/roc_data.json
+
+# IDE settings
+.vscode/
+.idea/
+
+# Data files
+*.csv
+*.tsv
+*.data
+*.dat
+*.h5
+*.hdf5
+*.parquet
+*.pickle
+*.pkl
+*.joblib
+
+# Results and figures
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.pdf
+
+# Large data and cache
+.cache/
+.ipynb_checkpoints/
