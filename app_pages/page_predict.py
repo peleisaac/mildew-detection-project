@@ -1,21 +1,20 @@
 import streamlit as st
 import numpy as np
 from PIL import Image
-
 from pathlib import Path
-
-# from src.data_management import load_pkl_file
 from src.machine_learning.predictive_analysis import (
     load_model_and_predict,
     resize_input_image,
     plot_predictions_probabilities,
 )
 import plotly.graph_objects as go
-from datetime import datetime
+import time
+
+
+
 
 
 # base_dir = Path(__file__).resolve().parent.parent
-
 image_path = "outputs/plots/healthy_samples_grid.png"
 powdery_path = "outputs/plots/powdery_mildew_samples_grid.png"
 healthy_sample = Image.open(image_path)
@@ -67,10 +66,14 @@ def page_mildew_detector():
 
                     try:
                         # Prediction
+                        start_time = time.time()
+
                         image_array = resize_input_image(img)
-                        prediction, confidence, prediction_proba = (
-                            load_model_and_predict(image_array)
-                        )
+                        prediction, confidence, prediction_proba = load_model_and_predict(image_array)
+
+                        end_time = time.time()
+                        processing_time = end_time - start_time
+
 
                         # For display purposes
                         predicted_class = (
@@ -117,43 +120,55 @@ def page_mildew_detector():
                         with col_c:
                             st.metric(
                                 label="Processing Time",
-                                value="0.8s",
-                                delta="Fast analysis",
+                                value=f"{processing_time:.2f}s",
+                                delta="Fast analysis" if processing_time < 1 else "Normal speed"
                             )
-                        
+
                         # Performance Metrics
                         st.markdown("---")
                         st.markdown("### 🎯 Model Performance Statement")
 
                         if confidence > 80:
-                            st.success("""
+                            st.success(
+                                """
                             ✅ **ML Model Status: HIGH CONFIDENCE PREDICTION**
                             
                             The machine learning model has successfully analyzed the image with high confidence. 
                             This prediction meets our business requirement of >80% confidence threshold and 
                             demonstrates the model's effectiveness in distinguishing between healthy and infected leaves.
-                            """)
+                            """
+                            )
                         elif confidence > 60:
-                            st.warning("""
+                            st.warning(
+                                """
                             ⚠️ **ML Model Status: MEDIUM CONFIDENCE PREDICTION**
                             
                             The model has provided a prediction but with medium confidence. While the model 
                             has successfully processed the image, additional verification may be recommended 
                             for critical decision-making.
-                            """)
+                            """
+                            )
                         else:
-                            st.error("""
+                            st.error(
+                                """
                             ❌ **ML Model Status: LOW CONFIDENCE PREDICTION**
                             
                             The model prediction has low confidence. This may indicate image quality issues 
                             or edge cases. Manual verification is strongly recommended.
-                            """)
+                            """
+                            )
 
                         # Probability visualization
                         st.markdown("#### 📈 Prediction Probabilities")
 
-                        healthy_prob = (1 - prediction_proba) * 100
-                        infected_prob = prediction_proba * 100
+                        
+                        # This was the previous use when we were using binary.
+                        # healthy_prob = (1 - prediction_proba) * 100
+                        # infected_prob = prediction_proba * 100
+                        
+                        # Update this because the softmax uses probability indexes of 0 and 1
+                        healthy_prob = prediction_proba[0] * 100
+                        infected_prob = prediction_proba[1] * 100
 
                         fig = go.Figure(
                             data=[
@@ -176,16 +191,19 @@ def page_mildew_detector():
                             showlegend=False,
                             height=400,
                         )
+                        st.plotly_chart(fig)
 
                         plot_predictions_probabilities(prediction_proba)
                         # Detailed interpretation of the visualization
-                        st.markdown("""
+                        st.markdown(
+                            """
                         **📊 Probability Chart Interpretation:**
                         This bar chart displays the model's confidence distribution between the two classes. 
                         The height of each bar represents the probability percentage, with the sum always equaling 100%. 
                         A higher bar indicates stronger confidence in that classification, with values above 80% 
                         considered high confidence predictions suitable for automated decision-making.
-                        """)
+                        """
+                        )
 
                         # Detailed analysis
                         st.markdown("#### 🔬 Detailed Analysis")
@@ -295,5 +313,5 @@ def page_mildew_detector():
         with col2:
             st.image(
                 mildew_sample,
-                caption="Powdery Mildew Leaf Sample"            
+                caption="Powdery Mildew Leaf Sample"
             )
