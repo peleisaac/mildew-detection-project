@@ -11,6 +11,7 @@
 
 # Ignore notebook checkpoints
 .ipynb_checkpoints/
+*.ipynb
 
 # Ignore notebook outputs (if saved separately)
 *.out
