@@ -66,7 +66,7 @@ from pathlib import Path
 import pandas as pd
 
 # === Model path ===
-mildew_model_path = "outputs/mildew_model_softmax.h5"
+mildew_model_path = "outputs/mildew_model_softmax.keras"
 
 # === Preprocess image ===
 def resize_input_image(img, target_size=(256, 256)):
