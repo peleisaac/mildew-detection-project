@@ -3,7 +3,6 @@
 *.tsv
 *.data
 *.dat
-*.h5
 *.hdf5
 *.parquet
 *.pickle
