@@ -5,8 +5,8 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import img_to_array
 from pathlib import Path
 
-base_dir = Path(__file__).resolve().parent.parent.parent
-mildew_model_path = base_dir / "outputs/mildew_model.h5"
+# base_dir = Path(__file__).resolve().parent.parent.parent
+mildew_model_path = "outputs/mildew_model.h5"
 
 
 def resize_input_image(img, target_size=(256, 256)):
