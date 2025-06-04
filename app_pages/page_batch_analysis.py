@@ -22,10 +22,8 @@ def page_batch_analysis():
     """
     )
 
-    # File uploader for multiple files
-    st.markdown("### 📄 Upload Multiple Images")
     uploaded_files = st.file_uploader(
-        "Choose image files",
+        "### 📄 Upload Multiple Images",
         type=["png", "jpg", "jpeg"],
         accept_multiple_files=True,
         help="Select multiple cherry leaf images for batch analysis",
@@ -34,69 +32,50 @@ def page_batch_analysis():
     if uploaded_files:
         st.success(f"📊 {len(uploaded_files)} images uploaded successfully!")
 
-        # Analysis settings
-        st.markdown("### ⚙️ Analysis Settings")
+        with st.sidebar:
+            st.markdown("### 🧾 Batch Info")
+            st.write(f"Total Files: {len(uploaded_files)}")
+            # st.write(f"Uploaded: {[file.name for file in uploaded_files]}")
 
+        st.markdown("### ⚙️ Analysis Settings")
         col1, col2, col3 = st.columns(3)
 
         with col1:
             confidence_threshold = st.slider(
-                "Confidence Threshold",
-                min_value=0.5,
-                max_value=1.0,
-                value=0.8,
-                step=0.05,
-                help="Minimum confidence level for predictions",
+                "Confidence Threshold", 0.5, 1.0, 0.8, 0.05
             )
 
         with col2:
-            batch_size = st.selectbox(
-                "Processing Batch Size",
-                options=[10, 25, 50, 100],
-                index=1,
-                help="Number of images to process at once",
-            )
+            batch_size = st.selectbox("Batch Size", [10, 25, 50, 100], index=1)
 
         with col3:
-            save_results = st.checkbox(
-                "Save Individual Results",
-                value=True,
-                help="Save detailed results for each image",
-            )
+            show_images = st.checkbox("Show Previews", value=False)
 
-        # Start batch analysis
+        st.divider()
+
         if st.button("🚀 Start Batch Analysis", type="primary"):
-
-            # Progress tracking
             progress_bar = st.progress(0)
             status_text = st.empty()
 
-            # Results storage
             results = []
+            error_log = []
 
-            # Process each image
             for i, uploaded_file in enumerate(uploaded_files):
                 status_text.text(
-                    f"Processing {uploaded_file.name}... ({i+1}/{len(uploaded_files)})"
+                    f"Processing {uploaded_file.name}... ({i + 1}/{len(uploaded_files)})"
                 )
-
                 try:
-                    # Load and process image
                     img = Image.open(uploaded_file).convert("RGB")
                     image_array = resize_input_image(img)
 
-                    # Actual prediction
                     prediction, confidence, prediction_proba = load_model_and_predict(
                         image_array
                     )
-                    prediction_label = (
-                        "Infected" if prediction == "powdery_mildew" else "Healthy"
-                    )
+                    label = "Infected" if prediction == "powdery_mildew" else "Healthy"
 
-                    # Store results
                     result = {
                         "filename": uploaded_file.name,
-                        "prediction": prediction_label,
+                        "prediction": label,
                         "confidence": round(confidence, 2),
                         "status": (
                             "High Confidence"
@@ -109,16 +88,37 @@ def page_batch_analysis():
                     }
                     results.append(result)
 
-                except Exception as e:
-                    st.warning(f"Could not process {uploaded_file.name}: {str(e)}")
+                    if show_images:
+                        st.image(
+                            img,
+                            caption=f"{uploaded_file.name} - {label} ({confidence:.2f}%)",
+                        )
 
-                # Update progress
+                except Exception as e:
+                    error_log.append({"filename": uploaded_file.name, "error": str(e)})
+                    st.warning(f"⚠️ Failed to process {uploaded_file.name}")
+
                 progress_bar.progress((i + 1) / len(uploaded_files))
 
             status_text.text("✅ Batch analysis completed!")
 
-            # Convert results to DataFrame
             df_results = pd.DataFrame(results)
+
+            # Error download option
+            if error_log:
+                error_df = pd.DataFrame(error_log)
+                st.download_button(
+                    "🐛 Download Error Log",
+                    data=error_df.to_csv(index=False),
+                    file_name="error_log.csv",
+                    mime="text/csv",
+                )
+
+            #         # Proceed to results visualization
+            #         display_batch_results(df_results, confidence_threshold)
+
+            # else:
+            #     show_instructions()
 
             # Display results
             st.markdown("---")
@@ -173,13 +173,15 @@ def page_batch_analysis():
                     color_discrete_map={"Healthy": "green", "Infected": "red"},
                 )
                 st.plotly_chart(fig_pie)
-                st.markdown("""
+                st.markdown(
+                    """
 **📊 Distribution Chart Analysis:**
 This pie chart visualizes the proportion of healthy vs infected leaves in your batch. 
 Green represents healthy leaves, red represents infected leaves. The percentages help 
 identify the infection rate across your sample, with higher red percentages indicating 
 more widespread infection requiring immediate attention.
-""")
+"""
+                )
 
             with tab2:
                 # Confidence distribution histogram
@@ -197,13 +199,15 @@ more widespread infection requiring immediate attention.
                     annotation_text=f"Threshold: {confidence_threshold*100}%",
                 )
                 st.plotly_chart(fig_hist)
-                st.markdown("""
+                st.markdown(
+                    """
 **📊 Confidence Histogram Analysis:**
 This histogram shows the distribution of prediction confidence scores across all images. 
 The vertical dashed line represents your confidence threshold. Bars to the right indicate 
 high-confidence predictions suitable for automated action, while bars to the left may 
 require manual verification. Color coding helps identify confidence levels by prediction type.
-""")
+"""
+                )
 
             with tab3:
                 # Processing timeline (if timestamps are available)
@@ -216,14 +220,15 @@ require manual verification. Color coding helps identify confidence levels by pr
                     color_discrete_map={"Healthy": "green", "Infected": "red"},
                 )
                 st.plotly_chart(fig_timeline)
-                st.markdown("""
+                st.markdown(
+                    """
 **📊 Timeline Scatter Plot Analysis:**
 This scatter plot tracks prediction confidence over processing time, helping identify 
 any patterns or quality issues during batch processing. Each point represents one image, 
 with Y-axis showing confidence and color indicating health status. Consistent confidence 
 levels across time indicate stable model performance.
-""")
-                
+"""
+                )
 
             # Detailed results table
             st.markdown("#### 📋 Detailed Results")
@@ -253,15 +258,16 @@ levels across time indicate stable model performance.
 
             # Display filtered table
             st.dataframe(filtered_df)
-            st.markdown("""
+            st.markdown(
+                """
 **📋 Results Table Interpretation:**
 This comprehensive table provides detailed analysis results for each processed image. 
 Key columns include prediction confidence, processing status, and image metadata. 
 Use the filters above to focus on specific prediction types or confidence levels. 
 High confidence results (>80%) are suitable for immediate action, while lower 
 confidence predictions may warrant manual review.
-""")
-            
+"""
+            )
 
             # Action items for infected leaves
             infected_leaves = df_results[df_results["prediction"] == "Infected"]
@@ -293,7 +299,6 @@ confidence predictions may warrant manual review.
                         st.write(
                             f"{priority_level} - {row['filename']} (Confidence: {row['confidence']:.1f}%)"
                         )
-                        
 
             # Download options
             st.markdown("---")
