@@ -5,7 +5,7 @@ from app_pages.page_ml_performance import page_ml_performance_body
 from app_pages.page_summary import page_summary
 from app_pages.page_batch_analysis import page_batch_analysis
 
-app = MultiPage(app_name="🌿 SmartLeaf Dashboard")
+app = MultiPage(app_name="SmartLeaf Dashboard")
 
 app.add_page("🔍 Predict", page_mildew_detector)
 app.add_page("🗺️ Batch Analysis", page_batch_analysis)
