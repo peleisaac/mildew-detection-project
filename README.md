@@ -91,7 +91,7 @@ This includes building a complete ML pipeline and a dashboard that allows:
 ![ROC Curve](outputs/plots/roc_curve.png)
 ![Class Sample Comparison](outputs/plots/healthy_vs_mildew.png)
 
-![Screenshot of Prediction](https://github.com/peleisaac/mildew-detection-project/blob/main/images/predict_on_random_test_data.png)
+![Screenshot of Prediction](images/predict_on_random_test_data.png)
 
 ### 6. Deployment
 
