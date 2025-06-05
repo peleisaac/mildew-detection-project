@@ -18,7 +18,7 @@ except:
 def page_summary():
     """Display project summary and overview"""
 
-    st.write("## 🌿 SmartLeaf: AI-Powered Mildew Detection")
+    st.write("## 🌿 Mildew Detector: AI-Powered Mildew Detection")
 
     # Hero section with key achievements
     st.markdown(
