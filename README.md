@@ -401,7 +401,7 @@ The application is deployed on Heroku with the following production-ready setup:
 
 **Deployment Process**:
 1. Create new Heroku application via CLI or web interface
-2. Connect GitHub repository for automatic deployments
+2. Connect  repository for automatic deployments
 3. Configure environment variables and build settings
 4. Enable automatic deployments from main branch
 5. Monitor application logs and performance metrics
@@ -409,7 +409,7 @@ The application is deployed on Heroku with the following production-ready setup:
 ### Local Development Setup
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/smartleaf-mildew-detection.git
+git clone https://github.com/peleisaac/mildew-detection-project.git
 cd smartleaf-mildew-detection
 
 # Create virtual environment (recommended)
