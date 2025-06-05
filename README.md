@@ -1,10 +1,10 @@
-# 🌿 SmartLeaf: AI-Powered Mildew Detection in Cherry Leaves
+# 🌿 Mildew Detector: AI-Powered Mildew Detection in Cherry Leaves
 
 ## Project Overview
 
-SmartLeaf is an innovative AI-powered dashboard that revolutionizes powdery mildew detection in cherry plantations. Using advanced computer vision and deep learning, this solution reduces inspection time from 30 minutes per tree to under 1 minute while achieving 99.8% accuracy - far exceeding industry standards.
+Mildew Detector is an innovative AI-powered dashboard that revolutionizes powdery mildew detection in cherry plantations. Using advanced computer vision and deep learning, this solution reduces inspection time from 30 minutes per tree to under 1 minute while achieving 99.8% accuracy - far exceeding industry standards.
 
-**🎯 Live Application**: [SmartLeaf Dashboard](https://mildew-detection-project-d7dc8f904db6.herokuapp.com/)
+**🎯 Live Application**: [Mildew Detector Dashboard](https://mildew-detection-project-d7dc8f904db6.herokuapp.com/)
 
 ## Business Context & Problem Statement
 
@@ -268,7 +268,7 @@ Develop an automated system to classify cherry leaves as healthy or affected by 
 ## 📂 Project Structure
 
 ```
-SmartLeaf/
+mildew_detection_project/
 ├── app.py                        # Main Streamlit dashboard launcher
 ├── requirements.txt              # Project dependencies for deployment
 ├── runtime.txt                   # Python version specification (3.10+)
@@ -388,7 +388,7 @@ No critical bugs remain in the current implementation. All identified issues dur
 ## Deployment
 
 ### Live Application
-**Heroku Deployment**: [SmartLeaf Dashboard](https://mildew-detection-project-d7dc8f904db6.herokuapp.com/)
+**Heroku Deployment**: [Mildew Detector](https://mildew-detection-project-d7dc8f904db6.herokuapp.com/)
 
 ### Heroku Deployment Configuration
 The application is deployed on Heroku with the following production-ready setup:
@@ -410,10 +410,10 @@ The application is deployed on Heroku with the following production-ready setup:
 ```bash
 # Clone the repository
 git clone https://github.com/peleisaac/mildew-detection-project.git
-cd smartleaf-mildew-detection
+cd mildew-detection-project
 
 # Create virtual environment (recommended)
-python -m venv smartleaf_env
+python -m venv Mildew Detector_env
 source smartleaf_env/bin/activate  # On Windows: smartleaf_env\Scripts\activate
 
 # Install dependencies
