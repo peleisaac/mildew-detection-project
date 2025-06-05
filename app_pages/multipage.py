@@ -1,7 +1,7 @@
 import streamlit as st
 
 class MultiPage:
-    def __init__(self, app_name="SmartLeaf Dashboard"):
+    def __init__(self, app_name="Mildew Detector"):
         self.pages = []
         self.app_name = app_name
 
