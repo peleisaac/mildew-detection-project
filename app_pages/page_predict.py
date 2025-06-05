@@ -14,6 +14,7 @@ import time
 
 
 
+
 # base_dir = Path(__file__).resolve().parent.parent
 image_path = "outputs/plots/healthy_samples_grid.png"
 powdery_path = "outputs/plots/powdery_mildew_samples_grid.png"
@@ -47,7 +48,12 @@ def page_mildew_detector():
 
         with col1:
             st.markdown("#### 🖼️ Uploaded Image")
-            img = Image.open(uploaded_file).convert("RGB")
+            try:
+                img = Image.open(uploaded_file).convert("RGB")
+            except Exception:
+                st.error("Invalid image format or unreadable file. Please upload another image.")
+                return
+
             st.image(img, caption="Uploaded Cherry Leaf")
 
             # Image information
@@ -61,7 +67,7 @@ def page_mildew_detector():
             st.markdown("#### 🤖 AI Analysis")
 
             # Analysis button
-            if st.button("🔍 Analyze Image", type="primary"):
+            if st.button("🔍 Analyze Image", type="primary", key="analyze_button"):
                 with st.spinner("Analyzing image... Please wait."):
 
                     try:
@@ -123,6 +129,11 @@ def page_mildew_detector():
                                 value=f"{processing_time:.2f}s",
                                 delta="Fast analysis" if processing_time < 1 else "Normal speed"
                             )
+                            
+                        
+                        report = f"Prediction: {predicted_class}\nConfidence: {confidence:.2f}%\nProcessing Time: {processing_time:.2f}s"
+                        st.download_button("📥 Download Report", report, file_name="mildew_analysis.txt")
+
 
                         # Performance Metrics
                         st.markdown("---")
