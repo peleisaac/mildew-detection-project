@@ -459,8 +459,8 @@ def page_summary():
         """
         <div style="background: #f0f2f6; padding: 1.5rem; border-radius: 10px; border-left: 5px solid #1f77b4;">
             <h4 style="color: #1f77b4; margin-bottom: 0.5rem;">🚀 Ready to Explore?</h4>
-            <p style="margin-bottom: 0.5rem;">Discover the full capabilities of SmartLeaf by exploring our interactive dashboard:</p>
-            <ul style="margin-bottom: 0;">
+            <p style="margin-bottom: 0.5rem; color: #333;">Discover the full capabilities of SmartLeaf by exploring our interactive dashboard:</p>
+            <ul style="margin-bottom: 0; color: #333;">
                 <li><strong>🔍 Mildew Detector</strong>: Upload your cherry leaf images for instant analysis</li>
                 <li><strong>📊 Visual Study</strong>: Explore the visual differences between healthy and infected leaves</li>  
                 <li><strong>📈 ML Performance</strong>: Dive deep into our model's exceptional performance metrics</li>
