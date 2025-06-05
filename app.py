@@ -7,10 +7,10 @@ from app_pages.page_batch_analysis import page_batch_analysis
 
 app = MultiPage(app_name="SmartLeaf Dashboard")
 
-app.add_page("🔍 Predict", page_mildew_detector)
-app.add_page("🗺️ Batch Analysis", page_batch_analysis)
 app.add_page("ℹ️ Summary", page_summary)
+app.add_page("🔍 Predict", page_mildew_detector)
 app.add_page("🧬 Visual Study", page_visual_study_body)
 app.add_page("📊 ML Performance", page_ml_performance_body)
+app.add_page("🗺️ Batch Analysis", page_batch_analysis)
 
 app.run()
